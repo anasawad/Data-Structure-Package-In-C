@@ -19,7 +19,7 @@ struct Node
 
 List LL_MakeEmpty(List p_list)
 {
-	if(p_list == NULL)
+	if(p_list != NULL)
 		LL_Destroy(p_list);
 	p_list = malloc(sizeof(struct Node));
 	if(p_list == NULL)
@@ -80,18 +80,40 @@ Position LL_FindPrevious(DataType p_item, List p_list)
 void LL_Insert(DataType p_item, List p_list, Position p_pos)
 {
 	Position tempNode;
+
 	tempNode = malloc(sizeof(struct Node));
-	if(tempNode == NULL)
-		printf("ERROR!! Out Of Space!!");
-	tempNode->m_value = p_item;
+
 	tempNode->m_next = p_pos->m_next;
+	tempNode->m_value = p_item;
+	p_list = tempNode;
+	p_pos->m_next = tempNode;
+
+}
+List LL_Reverse(List p_list)
+{
+	Position pos = p_list;
+	if(p_list == NULL)
+		return NULL;
+
+	List prev = NULL;
+	List temp = NULL;
+	List next = NULL;
+	temp = p_list;
+	while(temp != NULL) {
+		next = temp->m_next;
+		temp->m_next = prev;
+		prev = temp;
+		temp = next;
+	}
+	p_list = prev;
+	return p_list;
 }
 
 
 void LL_Destroy(List p_list)
 {
 	Position pos, temp;
-	pos->m_next = NULL;
+	pos =p_list->m_next;
 	p_list->m_next = NULL;
 	while(pos != NULL)
 	{

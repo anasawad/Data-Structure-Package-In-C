@@ -29,6 +29,7 @@ void LL_Delete(DataType p_item, List p_list);
 Position LL_FindPrevious(DataType p_item, List p_list);
 void LL_Insert(DataType p_item, List p_list, Position p_pos);
 void LL_Destroy(List p_list);
+List LL_Reverse(List p_list); // by Ahmed Hani
 Position LL_Header(List p_list);
 Position LL_First(List p_list);
 Position LL_Advance(Position p_pos);

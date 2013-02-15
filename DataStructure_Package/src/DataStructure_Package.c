@@ -14,27 +14,76 @@
 #include "LinkedList.h"
 #include "Binary_Heap.h"
 
+void PrintList( const List L )
+{
+    Position P = LL_Head( L );
+
+    if( LL_IsEmpty( L ) )
+        printf( "Empty list\n" );
+    else
+    {
+        do
+        {
+            P = LL_Advance( P );
+            printf( "%d ", LL_Retrieve( P ) );
+        } while( !LL_IsLast( P, L ) );
+        printf( "\n" );
+    }
+}
+
 
 int main(void)
 {
-	const int MaxSize = 1000;
-	PriorityQueue queue = PQ_Initialize(MaxSize);
-	int i, j;
 
-	PQ_Insert(20,queue);
-	PQ_Insert(24,queue);
-	PQ_Insert(50,queue);
-	PQ_Insert(30,queue);
-	PQ_Insert(23,queue);
-	PQ_Insert(45,queue);
+	List list ;
+	Position pos;
 
-	printf("Min Number %d\n", PQ_FindMin(queue));
-	PQ_DeleteMin(queue);
-	printf("Min Number %d\n", PQ_FindMin(queue));
-	PQ_DeleteMin(queue);
-	printf("Min Number %d\n", PQ_FindMin(queue));
-	PQ_DeleteMin(queue);
-	printf("Min Number %d\n", PQ_FindMin(queue));
+	int i ;
+	list = LL_MakeEmpty(NULL);
+	pos = (Position)LL_Head(list);
+
+	PrintList(list);
+
+	//list = LL_MakeEmpty(NULL);
+	LL_Insert( 1, list, pos );
+	pos = LL_Advance(pos);
+	LL_Insert( 2, list, pos );
+	pos = LL_Advance(pos);
+	LL_Insert( 3, list, pos );
+	pos = LL_Advance(pos);
+	LL_Insert( 4, list, pos );
+	PrintList(list);
+
+
+	list = LL_Reverse(list);
+	PrintList(list);
+
+//	for( i = 0; i < 10; i++ )
+//	{
+//		LL_Insert( i, list, pos );
+//		PrintList( list );
+//		pos = LL_Advance( pos );
+//	}
+//	PrintList(list);
+
+//	const int MaxSize = 1000;
+//	PriorityQueue queue = PQ_Initialize(MaxSize);
+//	int i, j;
+//
+//	PQ_Insert(20,queue);
+//	PQ_Insert(24,queue);
+//	PQ_Insert(50,queue);
+//	PQ_Insert(30,queue);
+//	PQ_Insert(23,queue);
+//	PQ_Insert(45,queue);
+//
+//	printf("Min Number %d\n", PQ_FindMin(queue));
+//	PQ_DeleteMin(queue);
+//	printf("Min Number %d\n", PQ_FindMin(queue));
+//	PQ_DeleteMin(queue);
+//	printf("Min Number %d\n", PQ_FindMin(queue));
+//	PQ_DeleteMin(queue);
+//	printf("Min Number %d\n", PQ_FindMin(queue));
 
 
 	//	for( i=0, j=MaxSize/2; i<MaxSize; i++, j=( j+71)%MaxSize )
