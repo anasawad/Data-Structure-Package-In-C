@@ -14,13 +14,13 @@ struct BinaryHeap;
 typedef struct BinaryHeap *PriorityQueue;
 
 PriorityQueue Initialize(int p_maxElements);
-void Destroy(PriorityQueue p_queue);
-void Make_Empty( PriorityQueue p_queue);
-void Insert(DataType p_item, PriorityQueue p_queue);
-DataType DeleteMin(PriorityQueue p_queue);
-DataType FindMin(PriorityQueue p_queue);
-int IsEmpty(PriorityQueue p_queue);
-int IsFull(PriorityQueue p_queue);
+void PQ_Destroy(PriorityQueue p_queue);
+void PQ_Make_Empty( PriorityQueue p_queue);
+void PQ_Insert(DataType p_item, PriorityQueue p_queue);
+DataType PQ_DeleteMin(PriorityQueue p_queue);
+DataType PQ_FindMin(PriorityQueue p_queue);
+int PQ_IsEmpty(PriorityQueue p_queue);
+int PQ_IsFull(PriorityQueue p_queue);
 
 #endif
 

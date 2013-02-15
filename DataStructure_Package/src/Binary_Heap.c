@@ -6,7 +6,7 @@
 #define MINDATA (-1000);
 
 
-PriorityQueue Initialize(int p_maxElements)
+PriorityQueue PQ_Initialize(int p_maxElements)
 {
 	PriorityQueue queue;
 
@@ -30,7 +30,7 @@ PriorityQueue Initialize(int p_maxElements)
 	return queue;
 }
 
-void Insert(DataType p_item, PriorityQueue p_queue)
+void PQ_Insert(DataType p_item, PriorityQueue p_queue)
 {
 	/*
 		 * Steps:
@@ -41,7 +41,7 @@ void Insert(DataType p_item, PriorityQueue p_queue)
 		 * */
 
 	int i;
-	if(IsFull(p_queue))
+	if(PQ_IsFull(p_queue))
 	{
 		printf("ERROR!! Queue is Full");
 		return;
@@ -51,12 +51,12 @@ void Insert(DataType p_item, PriorityQueue p_queue)
 	p_queue->m_Array[i] = p_item;
 }
 
-DataType DeleteMin(PriorityQueue p_queue)
+DataType PQ_DeleteMin(PriorityQueue p_queue)
 {
 	int i, child;
 	DataType minEle, lastEle;
 
-	if(IsEmpty(p_queue))
+	if(PQ_IsEmpty(p_queue))
 	{
 		printf("ERROR!! Queue is Empty");
 		return p_queue->m_Array[0];
@@ -80,30 +80,30 @@ DataType DeleteMin(PriorityQueue p_queue)
 	return minEle;
 }
 
-DataType FindMin(PriorityQueue p_queue)
+DataType PQ_FindMin(PriorityQueue p_queue)
 {
-	if(!IsEmpty(p_queue))
+	if(!PQ_IsEmpty(p_queue))
 		return p_queue->m_Array[1];
 	printf("ERRoR!! Queue is Empty!!");
 	return p_queue->m_Array[0];
 }
 
-void Make_Empty( PriorityQueue p_queue)
+void PQ_Make_Empty( PriorityQueue p_queue)
 {
 	p_queue->m_Size = 0;
 }
 
-int IsEmpty(PriorityQueue p_queue)
+int PQ_IsEmpty(PriorityQueue p_queue)
 {
 	return (p_queue->m_Size == 0);
 }
 
-int IsFull(PriorityQueue p_queue)
+int PQ_IsFull(PriorityQueue p_queue)
 {
 	return (p_queue->m_Size == p_queue->m_Capacity);
 }
 
-void Destroy(PriorityQueue p_queue)
+void PQ_Destroy(PriorityQueue p_queue)
 {
 	free(p_queue->m_Array);
 	free(p_queue);

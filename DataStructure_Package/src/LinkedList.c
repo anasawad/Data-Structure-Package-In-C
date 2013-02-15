@@ -10,140 +10,113 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-struct Linked_List *head = NULL;
-struct Linked_List *curr = NULL;
 
-struct Linked_List* Create_List(int p_val)
+struct Node
 {
-	printf("\n creating list with headnode as [%d]\n",p_val);
+	DataType	m_value;
+	Position 	m_next;
+};
 
-	struct Linked_List *ptr = (struct Linked_List*)malloc(sizeof(struct Linked_List));
-	if(ptr == NULL)
-	{
-		printf("\n Node creation failed \n");
-		return NULL;
-	}
-	ptr->m_value = p_val;
-	ptr->m_next = NULL;
-
-	head = curr = ptr;
-	return ptr;
+List LL_MakeEmpty(List p_list)
+{
+	if(p_list == NULL)
+		LL_Destroy(p_list);
+	p_list = malloc(sizeof(struct Node));
+	if(p_list == NULL)
+		printf("Error!! Out Of Memory");
+	p_list->m_next = NULL;
+	return p_list;
 }
 
-struct Linked_List* Insert_LinkedList(int p_val, bool p_toEnd)
+int LL_IsEmpty(List p_list)
 {
-	if(NULL == head)
-	{
-		return (Create_List(p_val));
-	}
+	return p_list->m_next == NULL;
+}
 
-	if(p_toEnd)
-		printf("\n Adding node to end of list with value [%d]\n",p_val);
-	else
-		printf("\n Adding node to beginning of list with value [%d]\n",p_val);
+/* Return true if P is the last position in list L */
+/* Parameter L is unused in this implementation */
+int LL_IsLast(Position p_pos, List p_list)
+{
+	return p_pos->m_next == NULL;
+}
 
-	struct Linked_List *ptr = (struct Linked_List*)malloc(sizeof(struct Linked_List));
-	if(ptr == NULL)
+/* Return Position of X in L; NULL if not found */
+Position LL_Find(DataType p_item, List p_list)
+{
+	Position p;
+	p = p_list->m_next;
+	while (p != NULL && p->m_value != p_item)
 	{
-		printf("\n Node creation failed \n");
-		return NULL;
+		p = p->m_next;
 	}
-	ptr->m_value = p_val;
-	ptr->m_next = NULL;
-
-	if(p_toEnd)
-	{
-		curr->m_next = ptr;
-		curr = ptr;
-	}
-	else
-	{
-		ptr->m_next = head;
-		head = ptr;
-	}
-	return ptr;
+	return p;
 }
 
 
-struct Linked_List* Search(int p_val, struct Linked_List **p_prev)
+void LL_Delete(DataType p_item, List p_list)
 {
-	struct Linked_List *ptr = head;
-	struct Linked_List *temp = NULL;
-	bool found = false;
-
-	printf("\n Searching the list for value [%d] \n",p_val);
-
-	while(ptr != NULL)
+	Position p, tempNode;
+	p = LL_FindPrevious(p_item, p_list);
+	if(!LL_IsLast(p, p_list))
 	{
-		if(ptr->m_value == p_val)
-		{
-			found = true;
-			break;
-		}
-		else
-		{
-			temp = ptr;
-			ptr = ptr->m_next;
-		}
-	}
-
-	if(true == found)
-	{
-		if(p_prev)
-			*p_prev = temp;
-		return ptr;
-	}
-	else
-	{
-		return NULL;
+		tempNode = p->m_next;
+		p->m_next = tempNode->m_next;
+		free(tempNode);
 	}
 }
 
-int Delete(int p_val)
+Position LL_FindPrevious(DataType p_item, List p_list)
 {
-	struct Linked_List *prev = NULL;
-	struct Linked_List *del = NULL;
-
-	printf("\n Deleting value [%d] from list\n",p_val);
-
-	del = Search(p_val,&prev);
-	if(del == NULL)
+	Position pos;
+	pos = p_list;
+	while( pos->m_next != NULL && pos->m_next->m_value!= p_item)
 	{
-		return -1;
+		pos = pos->m_next;
 	}
-	else
-	{
-		if(prev != NULL)
-			prev->m_next = del->m_next;
-
-		if(del == curr)
-		{
-			curr = prev;
-		}
-		else if(del == head)
-		{
-			head = del->m_next;
-		}
-	}
-
-	free(del);
-	del = NULL;
-
-	return 0;
+	return pos;
 }
 
-void Print_List(void)
+
+void LL_Insert(DataType p_item, List p_list, Position p_pos)
 {
-    struct Linked_List *ptr = head;
-
-    printf("\n -------Printing list Start------- \n");
-    while(ptr != NULL)
-    {
-        printf("\n [%d] \n",ptr->m_value);
-        ptr = ptr->m_next;
-    }
-    printf("\n -------Printing list End------- \n");
-
-    return;
+	Position tempNode;
+	tempNode = malloc(sizeof(struct Node));
+	if(tempNode == NULL)
+		printf("ERROR!! Out Of Space!!");
+	tempNode->m_value = p_item;
+	tempNode->m_next = p_pos->m_next;
 }
+
+
+void LL_Destroy(List p_list)
+{
+	Position pos, temp;
+	pos->m_next = NULL;
+	p_list->m_next = NULL;
+	while(pos != NULL)
+	{
+		temp = pos->m_next;
+		free(pos);
+		pos = temp;
+	}
+}
+
+Position LL_Head(List p_list)
+{
+	return p_list;
+}
+
+Position LL_First(List p_list)
+{
+	return p_list->m_next;
+}
+Position LL_Advance(Position p_pos)
+{
+	return p_pos->m_next;
+}
+DataType LL_Retrieve(Position p_pos)
+{
+	return p_pos->m_value;
+}
+
 

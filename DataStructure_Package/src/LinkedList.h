@@ -12,17 +12,27 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-struct Linked_List
-{
-	int 			    m_value;
-	struct Linked_List *m_next;
-};
 
-struct Linked_List* Create_List(int p_val);
-struct Linked_List* Insert_LinkedList(int p_val, bool p_toEnd);
-struct Linked_List* Search(int p_val, struct Linked_List **p_prev);
-int Delete(int p_val);
-void Print_List(void);
+
+typedef int DataType;
+
+struct Node;
+typedef struct Node *m_ptrToNode;
+typedef m_ptrToNode List;
+typedef m_ptrToNode Position;
+
+List LL_MakeEmpty(List p_list );
+int LL_IsEmpty(List p_list);
+int LL_IsLast(Position p_pos, List p_list);
+Position LL_Find(DataType p_item, List p_list);
+void LL_Delete(DataType p_item, List p_list);
+Position LL_FindPrevious(DataType p_item, List p_list);
+void LL_Insert(DataType p_item, List p_list, Position p_pos);
+void LL_Destroy(List p_list);
+Position LL_Header(List p_list);
+Position LL_First(List p_list);
+Position LL_Advance(Position p_pos);
+DataType LL_Retrieve(Position p_pos);
 
 
 #endif /* LINKEDLIST_H_ */

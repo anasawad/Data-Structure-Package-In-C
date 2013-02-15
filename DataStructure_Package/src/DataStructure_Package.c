@@ -18,23 +18,23 @@
 int main(void)
 {
 	const int MaxSize = 1000;
-	PriorityQueue queue = Initialize(MaxSize);
+	PriorityQueue queue = PQ_Initialize(MaxSize);
 	int i, j;
 
-	Insert(20,queue);
-	Insert(24,queue);
-	Insert(50,queue);
-	Insert(30,queue);
-	Insert(23,queue);
-	Insert(45,queue);
+	PQ_Insert(20,queue);
+	PQ_Insert(24,queue);
+	PQ_Insert(50,queue);
+	PQ_Insert(30,queue);
+	PQ_Insert(23,queue);
+	PQ_Insert(45,queue);
 
-	printf("Min Number %d\n", FindMin(queue));
-	DeleteMin(queue);
-	printf("Min Number %d\n", FindMin(queue));
-	DeleteMin(queue);
-	printf("Min Number %d\n", FindMin(queue));
-	DeleteMin(queue);
-	printf("Min Number %d\n", FindMin(queue));
+	printf("Min Number %d\n", PQ_FindMin(queue));
+	PQ_DeleteMin(queue);
+	printf("Min Number %d\n", PQ_FindMin(queue));
+	PQ_DeleteMin(queue);
+	printf("Min Number %d\n", PQ_FindMin(queue));
+	PQ_DeleteMin(queue);
+	printf("Min Number %d\n", PQ_FindMin(queue));
 
 
 	//	for( i=0, j=MaxSize/2; i<MaxSize; i++, j=( j+71)%MaxSize )
