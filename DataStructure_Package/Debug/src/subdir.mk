@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/Binary_Heap.c \
 ../src/DataStructure_Package.c \
 ../src/LinkedList.c 
 
 OBJS += \
+./src/Binary_Heap.o \
 ./src/DataStructure_Package.o \
 ./src/LinkedList.o 
 
 C_DEPS += \
+./src/Binary_Heap.d \
 ./src/DataStructure_Package.d \
 ./src/LinkedList.d 
 

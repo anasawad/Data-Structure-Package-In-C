@@ -30,7 +30,7 @@ struct Linked_List* Create_List(int p_val)
 	return ptr;
 }
 
-struct Linked_List* Insert(int p_val, bool p_toEnd)
+struct Linked_List* Insert_LinkedList(int p_val, bool p_toEnd)
 {
 	if(NULL == head)
 	{
