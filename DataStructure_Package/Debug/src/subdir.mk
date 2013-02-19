@@ -6,17 +6,20 @@
 C_SRCS += \
 ../src/Binary_Heap.c \
 ../src/DataStructure_Package.c \
-../src/LinkedList.c 
+../src/LinkedList.c \
+../src/Stack.c 
 
 OBJS += \
 ./src/Binary_Heap.o \
 ./src/DataStructure_Package.o \
-./src/LinkedList.o 
+./src/LinkedList.o \
+./src/Stack.o 
 
 C_DEPS += \
 ./src/Binary_Heap.d \
 ./src/DataStructure_Package.d \
-./src/LinkedList.d 
+./src/LinkedList.d \
+./src/Stack.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
